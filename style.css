@@ -1,18 +1,19 @@
-/* Smooth scrolling */
-html {
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #007acc, #00c6ff);
+  color: #fff;
+  line-height: 1.6;
   scroll-behavior: smooth;
 }
 
-/* Gradient background */
-body {
-  background: linear-gradient(135deg, #007acc, #00c6ff);
-  color: #fff;
-  font-family: 'Segoe UI', sans-serif;
-  margin: 0;
-  min-height: 100vh;
-}
-
-/* Loader animation */
+/* Loader */
 #loader {
   position: fixed;
   top: 0;
@@ -42,8 +43,15 @@ body {
   }
 }
 
-/* Motion visual text */
-h1 {
+/* Header */
+header {
+  background-color: #005fa3;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2.5rem;
   animation: fadeInDown 1s ease-out;
 }
 
@@ -58,23 +66,103 @@ h1 {
   }
 }
 
-/* Image hover effect */
-img {
-  transition: transform 0.3s ease;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+/* Navigation */
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 10px 0;
+  background-color: #004080;
 }
 
-img:hover {
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Parallax Section */
+.parallax-text {
+  background-image: url('your-image.jpg'); /* Replace with your image */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  text-align: center;
+}
+
+.text-overlay {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 40px;
+  border-radius: 10px;
+  backdrop-filter: blur(6px);
+  animation: fadeInUp 1.2s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Sections */
+section {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+section h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+/* Animated Buttons */
+.animated-btn {
+  background-color: #007acc;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: inline-block;
+  margin-top: 20px;
+  text-decoration: none;
+}
+
+.animated-btn:hover {
   transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-/* Dark mode transition */
-body, header, nav, footer {
-  transition: background-color 0.3s ease, color 0.3s ease;
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #004080;
+  margin-top: 40px;
 }
 
-.dark-mode {
+/* Dark Mode */
+body.dark-mode {
   background-color: #121212;
   color: #f0f0f0;
 }
@@ -89,39 +177,3 @@ body, header, nav, footer {
 .dark-mode a {
   color: #90caf9;
 }
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-.parallax {
-  /* The image used */
-  background-image: url("img_parallax.jpg");
-
-  /* Set a specific height */
-  min-height: 500px; 
-
-  /* Create the parallax scrolling effect */
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-</style>
-</head>
-<body>
-
-<p>Scroll Up and Down this page to see the parallax scrolling effect.</p>
-
-<div class="parallax"></div>
-
-<div style="height:1000px;background-color:transparent;font-size:36px">
-Scroll Up and Down this page to see the parallax scrolling effect.
-This div is just here to enable scrolling.
-Tip: Try to remove the background-attachment property to remove the scrolling effect.
-</div>
-
-</body>
-</html>
-

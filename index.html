@@ -1,202 +1,24 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Transparent Image Text with Parallax</title>
-
-  <style>
-    /* -------------------------
-       Reset & base
-       ------------------------- */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; }
-    body {
-      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      line-height: 1.4;
-      color: #111;
-      background: #f6f7fb;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    /* -------------------------
-       Page layout
-       ------------------------- */
-    .spacer { height: 60vh; display:flex; align-items:center; justify-content:center; padding: 2rem; }
-    .content {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 6rem 1.25rem;
-      text-align: center;
-    }
-
-    /* -------------------------
-       Parallax hero section
-       ------------------------- */
-    .hero {
-      position: relative;
-      min-height: 85vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    /* background layer (parallax image) */
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      /* Replace this URL with your image */
-      background-image: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1800&q=80');
-      background-size: cover;
-      background-position: center;
-      /* fixed attachment creates a simple parallax effect in supporting browsers */
-      background-attachment: fixed;
-      transform: translateZ(0);
-      z-index: 0;
-      filter: saturate(1.05) contrast(1.02) brightness(0.9);
-    }
-
-    /* overlay for contrast */
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(6,6,12,0.18), rgba(6,6,12,0.28));
-      z-index: 1;
-    }
-
-    /* The large title that shows the image through the letters */
-    .hero-title {
-      position: relative;
-      z-index: 2;
-      font-weight: 800;
-      font-size: clamp(3.2rem, 10vw, 9rem); /* responsive huge text */
-      line-height: 0.88;
-      letter-spacing: -0.02em;
-      margin: 0 1rem;
-      text-transform: uppercase;
-
-      /* text style that 'cuts out' the background */
-      color: transparent;
-      -webkit-text-fill-color: transparent;
-      background-image: inherit; /* won't actually inherit from ::before, but we set the same image below */
-      background-size: cover;
-      background-position: center;
-      -webkit-background-clip: text;
-      background-clip: text;
-
-      /* IMPORTANT: make the background fixed so the clipped text shows a parallax effect too */
-      background-attachment: fixed;
-      /* This keeps the clipped image visually consistent */
-      display: inline-block;
-      padding: 0.2rem 0.25rem;
-      text-shadow: 0 2px 12px rgba(2,2,6,0.25);
-    }
-
-    /* If you want a subheading */
-    .hero-sub {
-      position: relative;
-      z-index: 2;
-      margin-top: 0.6rem;
-      font-size: clamp(0.95rem, 2.2vw, 1.25rem);
-      color: rgba(255,255,255,0.95);
-      background: rgba(0,0,0,0.18);
-      padding: 0.45rem 0.9rem;
-      border-radius: 999px;
-      display: inline-block;
-      backdrop-filter: blur(4px);
-    }
-
-    /* -------------------------
-       Fallback / mobile improvements
-       ------------------------- */
-    @supports not (background-attachment: fixed) {
-      /* For browsers that don't support fixed attachment, use a regular background and slightly different look */
-      .hero::before { background-attachment: scroll; transform: scale(1.05); }
-      .hero-title { background-attachment: scroll; -webkit-text-stroke: 0.6px rgba(0,0,0,0.05); }
-    }
-
-    /* On small screens avoid parallax weirdness and increase contrast */
-    @media (max-width: 700px) {
-      .hero::before { background-attachment: scroll; background-position: center top; transform: translateY(-10%); }
-      .hero-title { font-size: clamp(2.2rem, 12vw, 5rem); }
-      .hero-sub { display: none; }
-    }
-
-    /* Extra content styles */
-    .section {
-      padding: 6rem 1.25rem;
-      text-align: center;
-      background: linear-gradient(180deg, #fff 0%, #fafbff 100%);
-    }
-
-    p.lead { font-size: 1.05rem; color: #333; max-width: 720px; margin: 0 auto 1.25rem; }
-    .btn {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.8rem 1.2rem;
-      border-radius: 10px;
-      background: linear-gradient(90deg,#0b76ff,#00c4ff);
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      box-shadow: 0 6px 20px rgba(6,90,200,0.14);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parallax with Transparent Image and Text</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-  <!-- Intro spacer so you can scroll into the hero and see parallax motion -->
-  <div class="spacer" aria-hidden="true">
-    <div class="content">
-      <h2 style="font-size:1.25rem; color:#444; margin-bottom:0.5rem;">Scroll down to see the effect</h2>
-      <p style="color:#666;">This demo shows a big title filled with a parallax image. Replace the image URL in the CSS with your image.</p>
+    <div class="parallax-container">
+        <div class="parallax-content">
+            <h1>Welcome to Parallax World</h1>
+            <p>This is a simple parallax effect with transparent images and text overlay.</p>
+        </div>
     </div>
-  </div>
-
-  <!-- HERO SECTION -->
-  <header class="hero" role="banner" aria-label="Hero with transparent text">
-    <!-- The hero::before contains the actual image so we don't need an <img> -->
-    <h1 class="hero-title" style="
-      /* set the same image URL here so text clip matches the background */
-      background-image: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1800&q=80');
-    ">
-      DREAM&nbsp;LADDERS
-    </h1>
-
-    <div class="hero-sub" aria-hidden="true">Transparent image text • Parallax effect</div>
-  </header>
-
-  <!-- Content after hero -->
-  <section class="section">
+    
     <div class="content">
-      <h3>What you can change</h3>
-      <p class="lead">
-        Change the URL in <code>.hero::before</code> and the inline <code>background-image</code> on <code>.hero-title</code>.
-        You can also adjust the font-size, letter-spacing, or add more overlay layers.
-      </p>
-
-      <a class="btn" href="#" onclick="alert('Demo button'); return false;">Experiment</a>
-
-      <hr style="margin:3rem auto; max-width:600px; border:none; height:1px; background:linear-gradient(90deg,#e6e9ef,#fff);">
-
-      <p style="max-width:700px; margin: 0 auto; color:#444;">
-        This implementation uses CSS-only techniques (no JS). On modern desktop browsers the parallax look is created
-        by <code>background-attachment: fixed</code>. On phones, that property is often disabled for performance,
-        so the CSS includes a graceful fallback.
-      </p>
+        <h2>More Content Below</h2>
+        <p>This is some content that scrolls normally while the parallax image stays fixed behind the text.</p>
     </div>
-  </section>
 
-  <!-- More spacer so you can scroll past -->
-  <div class="spacer" aria-hidden="true">
-    <div class="content">
-      <p style="color:#777;">More content below the hero — scroll to see the parallax move relative to other sections.</p>
-    </div>
-  </div>
-
+    <script src="script.js"></script>
 </body>
 </html>
